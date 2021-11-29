@@ -1,0 +1,313 @@
+localectl
+
+1. localectl list-locales
+2. localectl set-locale LANG=en_IN.UTF8
+3. configuration stored in /etc/locale.conf
+
+systemcmds 
+
+1. df -h (-h disk usage in human readable  form)
+2. df -Th (-T for file system type used for partition)
+3. w, who (who -a, who -H currently logged in users)
+4. top (cpu utilisation with pid)
+5. free -m (free ram memory in megabyte imp switch -h -g)
+   cat /proc/meminfo (meminfo page)
+6. vmstat (cpu and memory)
+7. to combine to commands use ; (whoami;ls -al)
+8. lscpu (cpu specification)
+
+history
+
+1. history (to get all previous enered commands)
+2. !4 (runs fourth command in histroy)
+3. history -c (to clear history enteries)
+
+Date
+
+1. date
+2. date +%d/%m/%y (date in format)
+   date -d "+45 days" -u(add 45 days to current day)
+3. date --help
+4. cal (current month cal switches -l -3 -y -j -m -s)
+
+whereis
+
+1. whereis ls (show binery and man file location)
+
+cat commad
+1. cat /etc/passwd (displays command)
+2. cat > test3 (create test3 and wait for user input press ctrl+d for completing operation)
+   cat >> test3 (append new user input to file)
+   cat tes1 > test2 (over test2 content with test1 contents)
+   cat test1 >> test2 (append tes1 content in test2 file)
+3. cat song.txt | more
+4. cat song.txt | less
+5. cat -n /etc/passwd (file with line number)
+6. cat -b /etc/passwd (file with line number without blank lines)
+
+standard input, output and error
+1. 0-stdin, 1-stdout, 2-stderr
+2. ./error.sh 1> capture.txt 2> error.txt (redirection output and error in same cmd)
+3. ./error.sh > capture.txt 2>&1 (redircting in same file and in shorthand)
+
+wc (word count)
+1. wc /etc/passwd (line, word, characters)
+2. wc -l /etc/passwd
+3. wc -w /etc/passwd
+4. wc -c /etc/passwd
+
+file and folder manipulation
+
+1. pwd
+2. ls, ls -al, ls -alh, ls -alR(R for recurssive sub directory)
+3. cd, cd .., cd -, cd /etc
+4. whatis cmd for describing the cmd specificaton
+5. man ls (for detal of ls cmd)
+6. echo (for displaying line of code), echo "created by lokesh" > 1.txt
+7. cat (to read content of files), cat -n(n for number),
+8. rm -Rfv lokesh (remove recurssive force full verbose)
+9. mv 1.txt lokesh.html (rename file and folder swithces -R -v -f)
+10. cp 1.txt lokesh.html (copy)
+    cp -pv lokesh.text /home (-p preserve owner and permissions )
+11. mkdir for making directory
+    mkdir -m 777 lokesh (-m mode chmod)
+    mkdir -p 1/2/3/4 (-p parents dir)
+12. file lokesh.txt(type of file)
+13. touch 1.txt 2.txt 3.txt
+14. touch file{1..100}.txt (wildcard to create 100 txt files)
+    touch tv_season{1..2}_episode{1..6}.ogg
+15. tail -n 20 /etc/passwd (to read 20 entries only)
+16. head -n 20 /etc/passwd (top lines)
+
+wildcards
+1. *, [], ? (three wild cards)
+2. ls -l l* (list all files with l)
+3. ls l?st.sh (list all file start with l and end with st.sh)
+4. ls l[abdcio]st.sh ( all files with names starting with l followed by any of the characters in the square bracket but ending with st.sh)
+
+file and folder permissions and ownership
+
+1. types of permission r- read, w-write, x-execute
+	drwxr-xr-x  2 root root 4096 Dec 12 21:11 frt
+	-rw-r--r--  1 root root 3060 Dec 12 21:07 lokesh.sh
+        umask (gives default permission of file and folder given while creation)
+	d for directory, - file and others
+	first block for owner, second for group to which owner belongs, third for others
+2. chmod u=rwx lokesh.sh (use = or +, this is for current user)
+   chmod ugo=rwx lokesh.sh(u-user, g-group, o-other,a- for all)
+3. by using binary r=4, w=2, x=1
+   chmod 755 lokesh.txt(owner have all, group and others have read and execute)
+4. chown root tesh.sh(change owner of file)
+   chgrp root tesh.sh(change group of file)
+   groups root(to get group of user)
+   chown root:root lokesh.txt(change owner and group in one cmd)
+5. stat /var/log (give details about file)
+
+vi, vim text editor
+
+1. vi test (open or create test file)
+2. :set nu (set line number)
+3. :set nonu (remove line number)
+4. i (insert mode)
+5. :5 (moves curser to line number 5)
+6. dd (delete current cursur position line)
+7. d5d, 5dd (delete 5 lines from current positon)
+8. dw (delete single word)
+9. yy (copy current line)
+10. 5yy, y5y  (copy 5 lines)
+11. p (paste copied files)
+12. u (undo last changes)
+13. . (redo last changes)
+14. shift+v (select block)
+15. :/for (search "for" in file)
+16. :s/for/For (search "for" fist occurence and repleace with For)
+17. :%s/for/For (search and replace all occurence)
+
+
+grep, piping, find and locate
+
+1. grep "dynamic" /etc/pro (search "dynamic" in specipic dir)
+   grep lokesh * (search in all)
+2. grep -i "dymainc" /etc/pro( remove case sensitivity)
+   grep -v lokesh * (search all -v invert match)
+   grep -e lokesh -e new * (search multiple words)
+   zgrep –i error /var/log/syslog.2.gz (find in gz file)
+   ip addr | grep -c inet ( -c count no of occerence)
+   grep –r “function” * (searching recurrsively -r)
+   find . –name “*.mp3” | grep –i JayZ | grep –vi “remix” (using with find cmd)
+   cat /etc/login.defs | grep -v "^#" | grep -v "^$" (-v invert match gives all excluding the given criteria)
+3. cat /etc/passwd | grep "root"(piping output of one cmd with other)
+4. locate passwd(find all passwd occurence)
+   locate -all "*.conf" | grep "resolve"
+   locate -i resolve(igonr case)
+5. sudo find / -type d -iname "lokesh"(iname - ignore case name, name-, -type d
+   for directory and f for file)
+   sudo find /home -type f -perm 755 (-perm is for permission 755)
+6. find . -type f | xargs file(find in current dir and pipe output of files)
+7. find . -type f -size 1033c ! -executable | xargs file( 1033c=1033 bytes
+   ! not,eg file which is 1033 bytes and not executable)
+8. find .-type f -user lokesh -group root -size 33c | xargs file
+   find . -type f -name "*zcat*" | xargs file
+
+
+enumerate systeminfo
+
+1. whoami
+2. hostname(modify in /etc/hostname)
+3. id
+4. groups root( group info)
+5. lsb_release -a
+6. cat /etc/os-release, cat /etc/redhat-release
+7. lscpu, uname -a dxdiag
+
+configure shell and bash
+
+1. echo $SHELL (gives current shell)
+2. cat /etc/shells (all available shells)
+3. chsh (change shell cmd give password and specify new shell from /etc/shells)
+
+linux compressing and decompressing 
+	tar cmds
+1. tar -cvf tecmint.tar /home/lokesh (-c compress, -v vorbose, -f filename)
+2. tar -cvzf tecmint.tar.gz /home/lokesh (tecmint.tar.gz = tecmint.tgz, -z for gzip)
+3. # tar cvfj Phpfiles-org.tar.bz2 /home/php(use -j for bz2 it compress more but takes more time)
+	OR
+   # tar cvfj Phpfiles-org.tar.tbz /home/php
+	OR 
+   # tar cvfj Phpfiles-org.tar.tb2 /home/php
+
+	Untar file
+4. tar -xvf tecmint.tar(use -zxvf for tar.gz, -jxvf for tar.bz2 )
+   tar -xcf tecmint.tar -c /home(specify dirrectory location for untar)
+5. tar -tvf tecmint.tar (-t to list out tar folder content)
+6. tar -xvf cleanfiles.sh.tar cleanfiles.sh( to extrect a single file specify that file)
+7. tar -xvf tecmint-14-09-12.tar "file 1" "file 2"(to extrect multiple file use quates and space seprated)
+8. tar -xvf Phpfiles-org.tar --wildcards '*.php'(use wildcard to extrect group of files)
+9. tar -rvf tecmint-14-09-12.tar xyz.txt (add files to already compressed tar file)
+10. tar tvfW tecmint-14-09-12.tar (user W to verrify a tar file)
+11. tar -czf - tecmint-14-09-12.tar | wc -c (get size for tar file in KB)
+12. tar -czvf archive.tar.gz /home/ubuntu --exclude=*.mp4 (tar with excluding)
+
+user and groups in linux
+
+1. groups (to give current users group info)
+2. useradd [options] username (syntax to add users It edits /etc/passwd, 
+/etc/shadow, /etc/group and /etc/gshadow files for the newly created User account)
+3. useradd tecmint (create user tecmint)
+4. passwd tecmint (change password for tecmint)
+5. useradd -d /data/projects lokesh (by default users home in /home to change the home location use -d )
+6. useradd -u 1000 -g 500 lokesh(create user contomise gruppid -g and userid -u)
+7. useradd -G admins,webadmin,developers tecmint (add user with multiple groups)
+9. useradd -M shilpi (create a user without home dirctory)
+By default, when we add user’s with ‘useradd‘ command user account never get expires i.e their expiry date is set to 0 (means never expired)
+10. useradd -e 2014-03-27 aparna (set expiry with -e option in YYYY-MM-DD)
+11. chage -l aparna (to verify age and password of user with chage cmd)
+    chage -E 2019-08-05 user03 command causes the user03 user's account to expire on
+    2020-08-05 (in YYYY-MM-DD format)
+12. useradd -e 2014-04-27 -f 45 tecmint(-f for setting password expiry in days)
+13. useradd -c "Manis Khurana" mansi (-c with custom comment)
+14. useradd -s /sbin/nologin tecmint (give a user custom shell)
+15. chage -W 10 ravi (to set 10 day prrior warning for user before password expiry)
+    sudo chage -m 0 -M 90 -W 7 -I 14 user03 (-m minimum days -m 0 means user change
+    password on next loging -M max -W 7 warning days -I inactive after expiry of password )
+
+16. groupadd developers (create a new group)
+17. groupadd -p password123 coders (changing password for group)
+18. usermod -aG sudo hope( add a user in sudo group)
+19. userdel -r lokesh (-r for recurssive and remove user)
+
+ps (process commands)
+(stages of process are running,waiting,stopped,orphaned and zombie)
+
+1. ps
+2. ps -A, ps -e (to print all process)
+3. ps -au, ps-aux (to print in bsd format)
+4. ps -ef (to print in full format)
+5. ps -fU root (all processes by root)
+6. ps -U root -u root (all process running as root)
+
+visudo
+
+visudo edits the sudoers file, which defines the users and groups with administrator rights
+
+1. root ALL=(ALL:ALL) ALL
+   user hostname=(runas-user:runas-group) command
+2. %admin ALL=(ALL) ALL (for group auth)
+3. export EDITOR=nano (to change default editor of sudoer file)
+4. daniel ALL=(ALL:ALL) mytop,cat,tail (costomise cmds)
+5. daniel ALL=(ALL:ALL) READ (declare READ alias as group of cmds)
+   Cmnd_Alias READ = mytop,cat,tail
+
+networking
+
+1. ip route show (to show ip routes)
+2. ip addr (for current ip)
+
+scp
+
+1. ~/Documents $ scp -v Label.pdf lokesh@192.168.43.44:/home/dump (-v verbose, -p for approx time and seed)
+   ~/Documents $ scp -Cvp Label.pdf lokesh@192.168.43.44:/home/dump (-C compress the content on the go
+   compression done on network level 10 times faster then normal scp)
+   (to change port use -P 2280, -r for recurrsive)
+
+variable
+
+1. MYUSERNAME=lokesh
+   echo $MYUSERNAME
+   echo ${MYUSERNAME}  
+2. echo Today is $(date +%A) (to use cmd use $ followed by ())
+3. echo \$HOME (\ escape char)
+4. myhost=$(hostname -s); echo $myhost (use ; for seprate cmds)
+5. echo "***** hostname is ${myhost} *****" (use ' or " for long strings)
+6. export TESTCMD=ls (set veriable and use $TESTCMD to call)
+7. export -n variablename (to unset)
+
+
+Network conf
+
+1. nmcli con (to get connection name)
+2. vi /etc/sysconfig/network-scripts/ifcfg-enp0s3 (edit)
+   change configuration as follows
+   	TYPE="Ethernet"
+	BOOTPROTO="none"
+	NAME="enp0s3"
+	IPADDR="192.168.20.150"
+	NETMASK="255.255.255.0"
+	GATEWAY="192.168.20.1"
+	DEVICE="enp0s3"
+	ONBOOT="yes"
+   systemctl restart NetworkManager
+3. using nmtui (utility)
+4. using cmds
+	nmcli con mod enp0s3 ipv4.addresses 192.168.20.170/24
+	nmcli con mod enp0s3 ipv4.gateway 192.168.20.1
+	nmcli con mod enp0s3 ipv4.method manual
+	nmcli con mod enp0s3 ipv4.dns "8.8.8.8"
+	nmcli con up enp0s3
+
+Logs
+
+1. /var/log (for log file location)
+2. journalctl (log analysing cmd)
+3. journalctl -o verbose (for verbose mode -0 openmode)
+4. journalctl --since  "2021-02-14 17:00:00" --until "2021-02-14 17:05:00" (for time slot)
+5. journalctl _PID=751(for viewing process process id log _UID to view by UID)
+6. journalctl /usr/bin/anacron (view using location)
+7. journalctl -k(-k kernel log -b boot log)
+8. journalctl --list -boots(to get all boot id)
+9. journalctl -b 1f00248226ed4ab9a1abac86e0d540d7 (to get log by bootid)
+10. journalctl --disk-usage
+	The Storage parameter in the /etc/systemd/journald.conf file defines whether to
+	store system journals in a volatile manner or persistently across reboot. Set this parameter to
+	persistent, volatile, or auto as follows
+
+timedate
+
+1. timedatectl (to veiw overview)
+2. timedatectl list-timezones (to view all available timezones)
+3. timedatectl set-timezone America/Phoenix
+4. timedatectl set-time 9:00:00
+5. 
+
+
+
