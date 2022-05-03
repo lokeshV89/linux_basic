@@ -122,6 +122,8 @@ vi, vim text editor
 15. :/for (search "for" in file)
 16. :s/for/For (search "for" fist occurence and repleace with For)
 17. :%s/for/For (search and replace all occurence)
+18. :set paste (to quick copy -> after set paste got to insert mode by using i
+                ctrl +v -> :set nopaste)
 
 
 grep, piping, find and locate
