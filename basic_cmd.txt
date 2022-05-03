@@ -124,6 +124,11 @@ vi, vim text editor
 17. :%s/for/For (search and replace all occurence)
 18. :set paste (to quick copy -> after set paste got to insert mode by using i
                 ctrl +v -> :set nopaste)
+19. setting yaml indentation
+	vi ~/.vmrc
+	autocmd FileType yaml setlocal ai ts=2 sw=2 et
+	set cuc
+	set nu
 
 
 grep, piping, find and locate
@@ -310,6 +315,7 @@ timedate
 3. timedatectl set-timezone America/Phoenix
 4. timedatectl set-time 9:00:00
 5. 
+
 
 
 
