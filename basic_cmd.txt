@@ -125,7 +125,7 @@ vi, vim text editor
 18. :set paste (to quick copy -> after set paste got to insert mode by using i
                 ctrl +v -> :set nopaste)
 19. setting yaml indentation
-	vi ~/.vmrc
+	vi ~/.vimrc
 	autocmd FileType yaml setlocal ai ts=2 sw=2 et
 	set cuc
 	set nu
