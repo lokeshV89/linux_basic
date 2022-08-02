@@ -276,7 +276,7 @@ Network conf
 2. vi /etc/sysconfig/network-scripts/ifcfg-enp0s3 (edit)
    change configuration as follows
    	TYPE="Ethernet"
-	BOOTPROTO="none"
+	BOOTPROTO="none" # static for static and dhcp of dhcp
 	NAME="enp0s3"
 	IPADDR="192.168.20.150"
 	NETMASK="255.255.255.0"
